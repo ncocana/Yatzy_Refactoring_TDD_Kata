@@ -1,9 +1,6 @@
 import pytest
 from src.yatzy import Yatzy
 
-# Chance
-# The player scores the sum of all dice, no matter what they read.
-
 @pytest.mark.testChance
 def test_chance():
     '''
@@ -34,7 +31,8 @@ def test_yatzy():
 
 '''
 Ones, Twos, Threes, Fours, Fives, Sixes:
-The player scores the sum of the dice that reads one, two, three, four, five, or six, respectively.
+The player scores the sum of the dice that reads
+one, two, three, four, five, or six, respectively.
 '''
 
 @pytest.mark.testOnes
@@ -96,3 +94,108 @@ def test_sixes(inyector):
     valorEsperado = 12
     assert valorEsperado == inyector.sixes()
 
+@pytest.mark.testPair
+def test_pair():
+    '''
+    Pair:
+    The player scores the sum of the two highest matching dice.
+    '''
+    # El algoritmo del metodo no es optimo, es complicado e ilegible.
+    # La abstraccion, el nombre del metodo, no es adecuada
+    # puesto que la categoria se llama pair.
+    assert 8 == Yatzy.pair(3, 3, 3, 4, 4)
+    assert 12 == Yatzy.pair(1, 1, 6, 2, 6)
+    assert 6 == Yatzy.pair(3, 3, 3, 4, 1)
+    assert 6 == Yatzy.pair(3, 3, 3, 3, 1)
+    assert 0 == Yatzy.pair(1, 2, 3, 4, 5)
+
+@pytest.mark.testTwoPairs
+def test_two_pairs():
+    '''
+    Two pairs:
+    If there are two pairs of dice with the same number,
+    the player scores the sum of these dice.
+    '''
+    # La categoria se llama "two pairs": la abstraccion del metodo
+    # no es adecuada.
+    # Mantengo notacion snake_case
+    # El algoritmo del metodo no es optimo, es complicado e ilegible.
+
+    assert 8 == Yatzy.two_pairs(1, 1, 2, 3, 3)
+    assert 0 == Yatzy.two_pairs(1, 1, 2, 3, 4)
+    assert 6 == Yatzy.two_pairs(1, 1, 2, 2, 2)
+    assert 0 == Yatzy.two_pairs(1, 2, 3, 4, 5)
+
+@pytest.mark.testThreeOfAKind
+def test_three_of_a_kind():
+    '''
+    Three of a kind:
+    If there are three dice with the same number,
+    the player scores the sum of these dice.
+    '''
+    # El algoritmo del metodo no es optimo, es complicado e ilegible.
+
+    assert 9 == Yatzy.three_of_a_kind(3, 3, 3, 4, 5)
+    assert 0 == Yatzy.three_of_a_kind(3, 3, 4, 5, 6)
+    assert 9 == Yatzy.three_of_a_kind(3, 3, 3, 3, 1)
+    assert 0 == Yatzy.three_of_a_kind(1, 2, 3, 4, 5)
+
+@pytest.mark.testFourOfAKind
+def test_four_of_a_kind():
+    '''
+    Four of a kind:
+    If there are four dice with the same number,
+    the player scores the sum of these dice.
+    '''
+    # El algoritmo del metodo no es optimo, es complicado e ilegible.
+
+    assert 8 == Yatzy.four_of_a_kind(2, 2, 2, 2, 5)
+    assert 0 == Yatzy.four_of_a_kind(2, 2, 2, 5, 5)
+    assert 8 == Yatzy.four_of_a_kind(2, 2, 2, 2, 2)
+    assert 0 == Yatzy.four_of_a_kind(1, 2, 3, 4, 5)
+
+@pytest.mark.testSmallStraight
+def test_small_straight():
+    '''
+    Small straight:
+    When placed on "small straight", if the dice reads:
+      "1,2,3,4,5",
+    the player scores 15 (the sum of all the dice).
+    '''
+    # El nombre del metodo no es consistente con la nomenclatura snake_case
+    # El algoritmo es complicado e ineficiente.
+
+    assert 15 == Yatzy.small_straight(1, 2, 3, 4, 5)
+    assert 0 == Yatzy.small_straight(2, 3, 4, 5, 6)
+    assert 0 == Yatzy.small_straight(1, 3, 4, 5, 5)
+    assert 0 == Yatzy.small_straight(6, 6, 6, 6, 6)
+    assert 0 == Yatzy.small_straight(1, 2, 3, 4, 6)
+
+@pytest.mark.testLargeStraight
+def test_large_straight():
+    '''
+    Large straight:
+    When placed on "large straight", if the dice reads:
+      "2,3,4,5,6",
+    the player scores 20 (the sum of all the dice).
+    '''
+    # El nombre del metodo no es consistente con la nomenclatura snake_case
+    # El algoritmo es complicado e ineficiente.
+
+    assert 20 == Yatzy.large_straight(2, 3, 4, 5, 6)
+    assert 0 == Yatzy.large_straight(1, 2, 3, 4, 5)
+    assert 0 == Yatzy.large_straight(1, 3, 4, 5, 5)
+    assert 0 == Yatzy.large_straight(6, 6, 6, 6, 6)
+    assert 0 == Yatzy.large_straight(1, 2, 3, 4, 6)
+
+@pytest.mark.testFullHouse
+def test_fullHouse():
+    '''
+    Full house:
+    If the dice are two of a kind and three of a kind,
+    the player scores the sum of all the dice.
+    '''
+
+    assert 8 == Yatzy.fullHouse(1, 1, 2, 2, 2)
+    assert 0 == Yatzy.fullHouse(2, 2, 3, 3, 4)
+    assert 0 == Yatzy.fullHouse(4, 4, 4, 4, 4)
