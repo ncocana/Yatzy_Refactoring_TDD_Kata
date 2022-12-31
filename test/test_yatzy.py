@@ -84,7 +84,7 @@ def test_fives(inyector):
     assert valorEsperado == inyector.fives()
 
 
-@pytest.mark.testSixs
+@pytest.mark.testSixes
 def test_sixes(inyector):
     '''
     The player scores the sum of the dice that reads six
@@ -99,7 +99,7 @@ def test_pair():
     Pair:
     The player scores the sum of the two highest matching dice.
     '''
-    
+
     assert 8 == Yatzy.pair(3, 3, 3, 4, 4)
     assert 12 == Yatzy.pair(1, 1, 6, 2, 6)
     assert 6 == Yatzy.pair(3, 3, 3, 4, 1)
