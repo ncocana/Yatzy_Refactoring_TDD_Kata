@@ -113,7 +113,7 @@ class Yatzy:
             if dice.count(number) >= PAIR:
                 return PAIR * number
 
-        # If there are no numbers that appear 2 or more time in the list,
+        # If there are no numbers that appear 2 or more times in the list,
         # return '0'.
         return 0
     
@@ -167,30 +167,46 @@ class Yatzy:
             return 0
     
     @staticmethod
-    def four_of_a_kind( _1,  _2,  d3,  d4,  d5):
-        tallies = [0]*6
-        tallies[_1-1] += 1
-        tallies[_2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-        for i in range(6):
-            if (tallies[i] >= 4):
-                return (i+1) * 4
+    def three_of_a_kind(*dice):
+
+        # Saves the value '3' in a variable,
+        # referring to the sum of three dice with the same number.
+        THREE = 3
+
+        # Gets each number in the range of 6 to 1.
+        for number in range(6, 0, -1):
+
+            # If the number saved in the variable at the moment
+            # appears 3 or more times in the list of dices,
+            # return that number multiplied by itself
+            # (which is the same as the sum of the two numbers).
+            if dice.count(number) >= THREE:
+                return THREE * number
+        
+        # If there are no numbers that appear 3 or more times in the list,
+        # return '0'.
         return 0
     
 
     @staticmethod
-    def three_of_a_kind( d1,  d2,  d3,  d4,  d5):
-        t = [0]*6
-        t[d1-1] += 1
-        t[d2-1] += 1
-        t[d3-1] += 1
-        t[d4-1] += 1
-        t[d5-1] += 1
-        for i in range(6):
-            if (t[i] >= 3):
-                return (i+1) * 3
+    def four_of_a_kind(*dice):
+
+        # Saves the value '4' in a variable,
+        # referring to the sum of three dice with the same number.
+        FOUR = 4
+
+        # Gets each number in the range of 6 to 1.
+        for number in range(6, 0, -1):
+
+            # If the number saved in the variable at the moment
+            # appears 4 or more times in the list of dices,
+            # return that number multiplied by itself
+            # (which is the same as the sum of the two numbers).
+            if dice.count(number) >= FOUR:
+                return FOUR * number
+        
+        # If there are no numbers that appear 4 or more times in the list,
+        # return '0'.
         return 0
     
 
