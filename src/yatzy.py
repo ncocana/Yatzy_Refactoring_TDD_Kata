@@ -10,14 +10,8 @@ class Yatzy:
     @staticmethod
     def chance(*dice):
 
-        score = 0
-
-        # Sums each element (die) in the list (dice)
-        # and saves the result in the variable 'score'.
-        for die in dice:
-            score += die
-            
-        return score
+        # Returns the sum of each element (die) in the list (dice).
+        return sum(dice)
 
     @staticmethod
     def yatzy(*dice):
@@ -124,22 +118,51 @@ class Yatzy:
         return 0
     
     @staticmethod
-    def two_pairs( d1,  d2,  d3,  d4,  d5):
-        counts = [0]*6
-        counts[d1-1] += 1
-        counts[d2-1] += 1
-        counts[d3-1] += 1
-        counts[d4-1] += 1
-        counts[d5-1] += 1
-        n = 0
+    def two_pairs(*dice):
+        PAIR = 2
+        pairs = 0
         score = 0
-        for i in range(6):
-            if (counts[6-i-1] >= 2):
-                n = n+1
-                score += (6-i)
-                    
-        if (n == 2):
-            return score * 2
+        number = 1
+
+        # As long as 'pairs' is less than '2',
+        # and 'number' less or equal to '6'...
+        while pairs < 2 and number <= 6:
+
+            # If the count of a given number is greater or equal to '2'...
+            '''
+            (
+               e.g. 1:
+               dice = (1,3,6,3,1)
+               dice.count(1) returns '2', because there are two '1' in dice list.
+               Enters the if contidition.
+
+               e.g. 2:
+               dice = (1,2,2,2,1)
+               dice.count(2) returns '3', because there are three '2' in dice list.
+               So even though it can be considered three of a kind,
+               it can also be considered a pair because there are still at least
+               two numbers with the same value. Therefore, it's allowed to enter the
+               if condition.
+            )
+            '''
+            if dice.count(number) >= 2:
+
+                # Enters the if condition, which means there's a pair of the given number.
+                # Adds the pair founded to the counter 'pairs'.
+                pairs += 1
+
+                # Adds the sum of the pair to the counter 'score'.
+                score += PAIR * number
+            
+            #Sums '1' to 'number' to continue iterating the while loop.
+            number += 1
+        
+        # When the counter 'pairs' is equal to '2',
+        # returns the final score.
+        if pairs == 2:
+            return score
+        
+        # Only one pair or none were found, returns '0'.
         else:
             return 0
     
