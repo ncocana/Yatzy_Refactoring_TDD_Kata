@@ -1,14 +1,23 @@
 class Yatzy:
 
+    def __init__(self, *dice):
+
+        # Creates a list with the dice given.
+        # Example: [1, 2, 3, 4, 5]
+        
+        self.dice = list(dice)
+    
     @staticmethod
-    def chance(d1, d2, d3, d4, d5):
-        total = 0
-        total += d1
-        total += d2
-        total += d3
-        total += d4
-        total += d5
-        return total
+    def chance(*dice):
+
+        score = 0
+
+        # Sums each element (die) in the list (dice)
+        # and saves the result in the variable 'score'.
+        for die in dice:
+            score += die
+            
+        return score
 
     @staticmethod
     def yatzy(*dice):
@@ -18,106 +27,104 @@ class Yatzy:
         # If it doesn't appears 5 times, it will return '0'. Else, it will return '50'.
         # In this example, the command gets the first element (1) and counts how many times it appears on the list (5).
         # If there's a number different from the first one or less/more than 5 elements on the list, it will return '0'.
+
         if dice.count(dice[0]) != 5:
             return 0
+        
         return 50
     
     @staticmethod
-    def ones( d1,  d2,  d3,  d4,  d5):
-        sum = 0
-        if (d1 == 1):
-            sum += 1
-        if (d2 == 1):
-            sum += 1
-        if (d3 == 1):
-            sum += 1
-        if (d4 == 1):
-            sum += 1
-        if (d5 == 1): 
-            sum += 1
+    def ones(*dice):
 
-        return sum
-    
+        # Counts the number of times that the number '1',
+        # saved in the variable (constant) ONE,
+        # appear in the list of dices,
+        # and multiplies the result for the wanted value (1).
 
-    @staticmethod
-    def twos( d1,  d2,  d3,  d4,  d5):
-        sum = 0
-        if (d1 == 2):
-             sum += 2
-        if (d2 == 2):
-             sum += 2
-        if (d3 == 2):
-             sum += 2
-        if (d4 == 2):
-             sum += 2
-        if (d5 == 2):
-             sum += 2
-        return sum
+        ONE = 1
+
+        return dice.count(ONE) * ONE
     
     @staticmethod
-    def threes( d1,  d2,  d3,  d4,  d5):
-        s = 0
-        if (d1 == 3):
-             s += 3
-        if (d2 == 3):
-             s += 3
-        if (d3 == 3):
-             s += 3
-        if (d4 == 3):
-             s += 3
-        if (d5 == 3):
-             s += 3
-        return s
-    
+    def twos(*dice):
 
-    def __init__(self, d1, d2, d3, d4, _5):
-        self.dice = [0]*5
-        self.dice[0] = d1
-        self.dice[1] = d2
-        self.dice[2] = d3
-        self.dice[3] = d4
-        self.dice[4] = _5
+        # Counts the number of times that the number '2',
+        # saved in the variable (constant) TWO,
+        # appear in the list of dices,
+        # and multiplies the result for the wanted value (2).
+
+        TWO = 2
+
+        return dice.count(TWO) * TWO
+    
+    @staticmethod
+    def threes(*dice):
+
+        # Counts the number of times that the number '3',
+        # saved in the variable (constant) THREE,
+        # appear in the list of dices,
+        # and multiplies the result for the wanted value (3).
+
+        THREE = 3
+
+        return dice.count(THREE) * THREE
     
     def fours(self):
-        sum = 0
-        for at in range(5):
-            if (self.dice[at] == 4): 
-                sum += 4
-        return sum
-    
 
+        # Counts the number of times that the number '4',
+        # saved in the variable (constant) FOUR,
+        # appear in the list of dices,
+        # and multiplies the result for the wanted value (4).
+
+        FOUR = 4
+
+        return self.dice.count(FOUR) * FOUR
+    
     def fives(self):
-        s = 0
-        i = 0
-        for i in range(len(self.dice)): 
-            if (self.dice[i] == 5):
-                s = s + 5
-        return s
-    
 
+        # Counts the number of times that the number '5',
+        # saved in the variable (constant) FIVE,
+        # appear in the list of dices,
+        # and multiplies the result for the wanted value (5).
+
+        FIVE = 5
+
+        return self.dice.count(FIVE) * FIVE
+    
     def sixes(self):
-        sum = 0
-        for at in range(len(self.dice)): 
-            if (self.dice[at] == 6):
-                sum = sum + 6
-        return sum
+
+        # Counts the number of times that the number '6',
+        # saved in the variable (constant) SIXES,
+        # appear in the list of dices,
+        # and multiplies the result for the wanted value (6).
+
+        SIXES = 6
+
+        return self.dice.count(SIXES) * SIXES
     
     @staticmethod
-    def score_pair( d1,  d2,  d3,  d4,  d5):
-        counts = [0]*6
-        counts[d1-1] += 1
-        counts[d2-1] += 1
-        counts[d3-1] += 1
-        counts[d4-1] += 1
-        counts[d5-1] += 1
-        at = 0
-        for at in range(6):
-            if (counts[6-at-1] == 2):
-                return (6-at)*2
+    def pair(*dice):
+
+        # Saves the value '2' in a variable,
+        # referring to the sum of the two highest matching dice.
+        PAIR = 2
+
+        # Gets each number in the range of 6 to 1.
+        for number in range(6, 0, -1):
+
+            # If the number saved in the variable at the moment
+            # appears 2 or more times in the list of dices,
+            # return that number multiplied by itself
+            # (which is the same as the sum of the two numbers).
+            if dice.count(number) >= PAIR:
+                return PAIR * number
+
+        # If there are no numbers that appear 2 or more time in the list,
+        # return '0'.
         return 0
     
     @staticmethod
-    def two_pair( d1,  d2,  d3,  d4,  d5):
+    def two_pairs( d1,  d2,  d3,  d4,  d5):
         counts = [0]*6
         counts[d1-1] += 1
         counts[d2-1] += 1
