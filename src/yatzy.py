@@ -11,14 +11,16 @@ class Yatzy:
         return total
 
     @staticmethod
-    def yatzy(dice):
-        counts = [0]*(len(dice)+1)
-        for die in dice:
-            counts[die-1] += 1
-        for i in range(len(counts)):
-            if counts[i] == 5:
-                return 50
-        return 0
+    def yatzy(*dice):
+
+        # Example: dice = (1,1,1,1,1)
+        # dice.count(dice[0]) gets the value of the first value in the list and counts how many time it appears on the list.
+        # If it doesn't appears 5 times, it will return '0'. Else, it will return '50'.
+        # In this example, the command gets the first element (1) and counts how many times it appears on the list (5).
+        # If there's a number different from the first one or less/more than 5 elements on the list, it will return '0'.
+        if dice.count(dice[0]) != 5:
+            return 0
+        return 50
     
     @staticmethod
     def ones( d1,  d2,  d3,  d4,  d5):
