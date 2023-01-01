@@ -119,6 +119,7 @@ class Yatzy:
     
     @staticmethod
     def two_pairs(*dice):
+
         PAIR = 2
         pairs = 0
         score = 0
@@ -211,68 +212,81 @@ class Yatzy:
     
 
     @staticmethod
-    def smallStraight( d1,  d2,  d3,  d4,  d5):
-        tallies = [0]*6
-        tallies[d1-1] += 1
-        tallies[d2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-        if (tallies[0] == 1 and
-            tallies[1] == 1 and
-            tallies[2] == 1 and
-            tallies[3] == 1 and
-            tallies[4] == 1):
-            return 15
-        return 0
+    def smallStraight(*dice):
+
+        #For each number in a range from 1 to 5...
+        for number in range(1, 6):
+
+            #If the total count of the given number isn't equal to '1'...
+            '''
+            (
+                e.g.:
+                dice = (1,2,2,3,4)
+                dice.count(2)       Counts the number of times that '2' appear in 'dice', which is '2'.
+                                    '2' isn't equal to '1', so it enterns the if condition and returns '0'.
+            )
+            '''
+            if dice.count(number) != 1:
+
+                #Return '0'.
+                return 0
+        
+        # If each number from 1 to 5 appear only 1 time,
+        # return the sum of these numbers (1,2,3,4,5),
+        # which is '15'.
+        return 15
     
 
     @staticmethod
-    def largeStraight( d1,  d2,  d3,  d4,  d5):
-        tallies = [0]*6
-        tallies[d1-1] += 1
-        tallies[d2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-        if (tallies[1] == 1 and
-            tallies[2] == 1 and
-            tallies[3] == 1 and
-            tallies[4] == 1
-            and tallies[5] == 1):
-            return 20
-        return 0
+    def largeStraight(*dice):
+
+        #For each number in a range from 2 to 6...
+        for number in range(2, 7):
+
+            #If the total count of the given number isn't equal to '1'...
+            '''
+            (
+                e.g.:
+                dice = (2, 2, 3, 4, 5)
+                dice.count(2)       Counts the number of times that '2' appear in 'dice', which is '2'.
+                                    '2' isn't equal to '1', so it enterns the if condition and returns '0'.
+            )
+            '''
+            if dice.count(number) != 1:
+
+                #Return '0'.
+                return 0
+        
+        # If each number from 2 to 6 appear only 1 time,
+        # return the sum of these numbers (2,3,4,5,6),
+        # which is '20'.
+        return 20
     
 
     @staticmethod
-    def fullHouse( d1,  d2,  d3,  d4,  d5):
-        tallies = []
-        _2 = False
-        i = 0
-        _2_at = 0
-        _3 = False
-        _3_at = 0
-
-        tallies = [0]*6
-        tallies[d1-1] += 1
-        tallies[d2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-
-        for i in range(6):
-            if (tallies[i] == 2): 
-                _2 = True
-                _2_at = i+1
-            
-
-        for i in range(6):
-            if (tallies[i] == 3): 
-                _3 = True
-                _3_at = i+1
-            
-
-        if (_2 and _3):
-            return _2_at * 2 + _3_at * 3
+    def fullHouse(*dice):
+        if Yatzy.__low_pair(*dice) and Yatzy.three_of_a_kind(*dice):
+            return Yatzy.__low_pair(*dice) + Yatzy.three_of_a_kind(*dice)
         else:
             return 0
+
+    @staticmethod
+    def __low_pair(*dice):
+
+        # Gets the function 'pair()' and modifies it so it returns
+        # the sum of the two highest matching dice but only if there are
+        # two same numbers and no more.
+        # If there are more than two same numbers (e.g.: (3,3,3,3,1)),
+        # it will return '0'.
+
+        PAIR = 2
+
+        for number in range(6, 0, -1):
+
+            # In 'pair()', this if condition was if the count of the given number
+            # was greater or equal to '2'.
+            # In this function, it is modified to be equal to '2'.
+            if dice.count(number) == PAIR:
+                return PAIR * number
+
+        return 0
