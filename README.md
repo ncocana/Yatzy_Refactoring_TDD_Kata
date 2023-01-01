@@ -123,14 +123,14 @@ For example, when placed on "four of a kind":
 ### Small straight: 
 When placed on "small straight", if the dice reads:
 
-    "1,2,3,4,5" 
+    1,2,3,4,5
    
 The player scores 15 (the sum of all the dice).
 
 ### Large straight: 
 When placed on "large straight", if the dice reads:
 
-    "2,3,4,5,6" 
+    2,3,4,5,6
    
 The player scores 20 (the sum of all the dice).
 
