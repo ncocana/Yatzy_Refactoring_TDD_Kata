@@ -188,7 +188,6 @@ class Yatzy:
         # return '0'.
         return 0
     
-
     @staticmethod
     def four_of_a_kind(*dice):
 
@@ -210,7 +209,6 @@ class Yatzy:
         # return '0'.
         return 0
     
-
     @staticmethod
     def smallStraight(*dice):
 
@@ -236,7 +234,6 @@ class Yatzy:
         # which is '15'.
         return 15
     
-
     @staticmethod
     def largeStraight(*dice):
 
@@ -262,11 +259,18 @@ class Yatzy:
         # which is '20'.
         return 20
     
-
     @staticmethod
     def fullHouse(*dice):
+
+        # Calls the functions '__low_pair' and 'three_of_a_kind'.
+        # If both functions don't return '0'...
         if Yatzy.__low_pair(*dice) and Yatzy.three_of_a_kind(*dice):
+
+            # ...return the sum of the scores (results) of both functions.
             return Yatzy.__low_pair(*dice) + Yatzy.three_of_a_kind(*dice)
+
+        # If one of the functions or both return '0',
+        # return '0' here too.
         else:
             return 0
 
