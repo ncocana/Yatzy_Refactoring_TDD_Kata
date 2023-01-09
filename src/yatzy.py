@@ -1,11 +1,11 @@
 class Yatzy:
 
-    def __init__(self, *dice):
+    '''def __init__(self, *dice):
 
         # Creates a list with the dice given.
         # Example: [1, 2, 3, 4, 5]
         
-        self.dice = list(dice)
+        self.dice = list(dice)'''
     
     @staticmethod
     def chance(*dice):
@@ -63,7 +63,7 @@ class Yatzy:
 
         return dice.count(THREE) * THREE
     
-    def fours(self):
+    def fours(*dice):
 
         # Counts the number of times that the number '4',
         # saved in the variable (constant) FOUR,
@@ -72,9 +72,9 @@ class Yatzy:
 
         FOUR = 4
 
-        return self.dice.count(FOUR) * FOUR
+        return dice.count(FOUR) * FOUR
     
-    def fives(self):
+    def fives(*dice):
 
         # Counts the number of times that the number '5',
         # saved in the variable (constant) FIVE,
@@ -83,9 +83,9 @@ class Yatzy:
 
         FIVE = 5
 
-        return self.dice.count(FIVE) * FIVE
+        return dice.count(FIVE) * FIVE
     
-    def sixes(self):
+    def sixes(*dice):
 
         # Counts the number of times that the number '6',
         # saved in the variable (constant) SIXES,
@@ -94,7 +94,7 @@ class Yatzy:
 
         SIXES = 6
 
-        return self.dice.count(SIXES) * SIXES
+        return dice.count(SIXES) * SIXES
     
     @staticmethod
     def pair(*dice):
