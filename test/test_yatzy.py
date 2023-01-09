@@ -55,43 +55,43 @@ def test_threes():
     assert 0 == Yatzy.threes(1, 1, 1, 1, 1)
     assert 9 == Yatzy.threes(3, 3, 3, 4, 5)
 
-@pytest.fixture
+'''@pytest.fixture
 def inyector():
     # Es el setup de unittest o de JUnit
     tirada = Yatzy(4, 5, 6, 6, 5)
-    return tirada
+    return tirada'''
 
 
 @pytest.mark.testFours
-def test_fours(inyector):
+def test_fours():
     '''
     The player scores the sum of the dice that reads four
     '''
 
-    # Es necesario un objeto ya creado
-    valorEsperado = 4
-    # No puedo testear con fixtures = inyeccion de dependencias
-    # los metodos estaticos como chance()
-    assert valorEsperado == inyector.fours()
+    assert 12 == Yatzy.fours(4,4,4,5,5)
+    assert 8 == Yatzy.fours(4,4,5,5,5)
+    assert 4 == Yatzy.fours(4,5,5,5,5)
 
 @pytest.mark.testFives
-def test_fives(inyector):
+def test_fives():
     '''
     The player scores the sum of the dice that reads five
     '''
 
-    valorEsperado = 10
-    assert valorEsperado == inyector.fives()
+    assert 10 == Yatzy.fives(4,4,4,5,5)
+    assert 15 == Yatzy.fives(4,4,5,5,5)
+    assert 20 == Yatzy.fives(4,5,5,5,5)
 
 
 @pytest.mark.testSixes
-def test_sixes(inyector):
+def test_sixes():
     '''
     The player scores the sum of the dice that reads six
     '''
 
-    valorEsperado = 12
-    assert valorEsperado == inyector.sixes()
+    assert 0 == Yatzy.sixes(4,4,4,5,5)
+    assert 6 == Yatzy.sixes(4,4,6,5,5)
+    assert 18 == Yatzy.sixes(6,5,6,6,5)
 
 @pytest.mark.testPair
 def test_pair():
