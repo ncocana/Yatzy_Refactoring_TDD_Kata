@@ -1,5 +1,5 @@
 import pytest
-from src.yatzy import Yatzy
+from src.Yatzy import Yatzy
 
 @pytest.mark.testChance
 def test_chance():
