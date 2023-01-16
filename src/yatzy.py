@@ -1,3 +1,5 @@
+from src.Numbers import Numbers
+
 class Yatzy:
 
     '''def __init__(self, *dice):
@@ -35,7 +37,7 @@ class Yatzy:
         # appear in the list of dices,
         # and multiplies the result for the wanted value (1).
 
-        ONE = 1
+        ONE = Numbers.ONE.value
 
         return dice.count(ONE) * ONE
     
@@ -47,7 +49,7 @@ class Yatzy:
         # appear in the list of dices,
         # and multiplies the result for the wanted value (2).
 
-        TWO = 2
+        TWO = Numbers.TWO.value
 
         return dice.count(TWO) * TWO
     
@@ -59,10 +61,11 @@ class Yatzy:
         # appear in the list of dices,
         # and multiplies the result for the wanted value (3).
 
-        THREE = 3
+        THREE = Numbers.THREE.value
 
         return dice.count(THREE) * THREE
     
+    @staticmethod
     def fours(*dice):
 
         # Counts the number of times that the number '4',
@@ -70,10 +73,11 @@ class Yatzy:
         # appear in the list of dices,
         # and multiplies the result for the wanted value (4).
 
-        FOUR = 4
+        FOUR = Numbers.FOUR.value
 
         return dice.count(FOUR) * FOUR
     
+    @staticmethod
     def fives(*dice):
 
         # Counts the number of times that the number '5',
@@ -81,10 +85,11 @@ class Yatzy:
         # appear in the list of dices,
         # and multiplies the result for the wanted value (5).
 
-        FIVE = 5
+        FIVE = Numbers.FIVE.value
 
         return dice.count(FIVE) * FIVE
     
+    @staticmethod
     def sixes(*dice):
 
         # Counts the number of times that the number '6',
@@ -92,7 +97,7 @@ class Yatzy:
         # appear in the list of dices,
         # and multiplies the result for the wanted value (6).
 
-        SIXES = 6
+        SIXES = Numbers.SIX.value
 
         return dice.count(SIXES) * SIXES
     
@@ -103,8 +108,9 @@ class Yatzy:
         # referring to the sum of the two highest matching dice.
         PAIR = 2
 
-        # Gets each number in the range of 6 to 1.
-        for number in range(6, 0, -1):
+        # Calls the class Numbers and get its members values
+        # in reversed order (from 6 to 1).
+        for number in Numbers.reversedValues():
 
             # If the number saved in the variable at the moment
             # appears 2 or more times in the list of dices,
@@ -174,8 +180,9 @@ class Yatzy:
         # referring to the sum of three dice with the same number.
         THREE = 3
 
-        # Gets each number in the range of 6 to 1.
-        for number in range(6, 0, -1):
+        # Calls the class Numbers and get its members values
+        # in reversed order (from 6 to 1).
+        for number in Numbers.reversedValues():
 
             # If the number saved in the variable at the moment
             # appears 3 or more times in the list of dices,
@@ -195,8 +202,9 @@ class Yatzy:
         # referring to the sum of three dice with the same number.
         FOUR = 4
 
-        # Gets each number in the range of 6 to 1.
-        for number in range(6, 0, -1):
+        # Calls the class Numbers and get its members values
+        # in reversed order (from 6 to 1).
+        for number in Numbers.reversedValues():
 
             # If the number saved in the variable at the moment
             # appears 4 or more times in the list of dices,
@@ -264,10 +272,10 @@ class Yatzy:
 
         # Calls the functions '__low_pair' and 'three_of_a_kind'.
         # If both functions don't return '0'...
-        if Yatzy.__low_pair(*dice) and Yatzy.three_of_a_kind(*dice):
+        if Yatzy.__two_of_a_kind(*dice) and Yatzy.three_of_a_kind(*dice):
 
             # ...return the sum of the scores (results) of both functions.
-            return Yatzy.__low_pair(*dice) + Yatzy.three_of_a_kind(*dice)
+            return Yatzy.__two_of_a_kind(*dice) + Yatzy.three_of_a_kind(*dice)
 
         # If one of the functions or both return '0',
         # return '0' here too.
@@ -275,7 +283,7 @@ class Yatzy:
             return 0
 
     @staticmethod
-    def __low_pair(*dice):
+    def __two_of_a_kind(*dice):
 
         # Gets the function 'pair()' and modifies it so it returns
         # the sum of the two highest matching dice but only if there are
@@ -285,7 +293,7 @@ class Yatzy:
 
         PAIR = 2
 
-        for number in range(6, 0, -1):
+        for number in Numbers.reversedValues():
 
             # In 'pair()', this if condition was if the count of the given number
             # was greater or equal to '2'.
